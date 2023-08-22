@@ -12,12 +12,12 @@ flask, javascript ,mongodb ( users ) , firebase ( images )
 Image - Watermark, pixelate, resize , crop , upscale , etc..
 
 
-## upload image
+## Upload image and manipulate
 
 ![]()
 
 
-## Web Application
+## Manage user and edits
 
 ![]()
 
