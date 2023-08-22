@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4">
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <div class="navbar-nav align-items-center ms-auto custom-margin" id="navButtons" style="display: none">
+            <a class="btn btn-primary me-2" id="reSelectImage">New Image</a>
+            <a class="btn btn-light me-2" id="resetImage">Reset</a>
+            <a class="btn btn-light me-3" id="saveImage">Save Image</a>
+        </div>
+
+        <div class="navbar-nav align-items-center ms-auto" id="imageChoices">
+
+
+            {% if current_user.is_authenticated %}
+            <div id="loggedInBar" class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    {{ current_user.username }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                    <a href="{{ url_for('signin') }}" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="{{ url_for('logout') }}" class="dropdown-item">Log Out</a>
+                </div>
+            </div>
+            {% else %}
+            <div id="loggedOutBar">
+                <a href="{{ url_for('signin') }}" class="nav-link">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Resizer Start -->
+
+    <div class="full-height px-0 d-flex ">
+        <div class="playground text-center flex-grow-1">
+            <br><br>
+            <h1 class="watermark-controls"> Resize Image </h1>
+            <br>
+            <input type="file" id="imageLoader" style="display: none">
+            <a class="btn btn-primary watermark-controls" id="selectImage">Select Image</a>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Resizer End -->
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- FabricJS canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+<!-- Functions Javascript -->
+<script src="../static/js/function.js"></script>
+<script src="../static/js/resizer.js"></script>
+{% endblock %}

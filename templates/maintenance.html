@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% extends "base.html" %}
+</head>
+
+<body>
+
+{% block content %}
+<div class="content">
+
+    <!-- Content Start -->
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="navbar-nav align-items-center ms-auto">
+
+
+            {% if current_user.is_authenticated %}
+            <div id="loggedInBar" class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    {{ current_user.username }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                    <a href="{{ url_for('signin') }}" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="{{ url_for('logout') }}" class="dropdown-item">Log Out</a>
+                </div>
+            </div>
+            {% else %}
+            <div id="loggedOutBar">
+                <a href="{{ url_for('signin') }}" class="nav-link">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Recent Edits Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-secondary text-center rounded p-4">
+            <h2> Feature will be built soon...</h2>
+        </div>
+    </div>
+    <!-- Recent Edits End -->
+
+</div>
+{% endblock %}
+<!-- Content End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+{% block scripts %}
+<script src="../static/js/index.js"></script>
+{% endblock %}
+</body>
+
+</html>
